@@ -4,7 +4,7 @@
 搜索推荐样例
 
 #### 架构图
-Structure为架构图
+![avatar](https://github.com/NewPracticer/SearchRecommend/blob/main/structure.png)
 
 #### 项目说明
 1. tmdb 作为 数据源，训练es的使用
