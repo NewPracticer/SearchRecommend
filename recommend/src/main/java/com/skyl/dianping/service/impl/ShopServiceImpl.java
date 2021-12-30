@@ -100,12 +100,13 @@ public class ShopServiceImpl implements ShopService{
      */
     @Override
     public List<ShopModel> recommend(BigDecimal longitude, BigDecimal latitude) {
+//        推荐1.0方式
 //        List<ShopModel> shopModelList = shopModelMapper.recommend(longitude, latitude);
 //        shopModelList.forEach(shopModel -> {
 //            shopModel.setSellerModel(sellerService.get(shopModel.getSellerId()));
 //            shopModel.setCategoryModel(categoryService.get(shopModel.getCategoryId()));
 //        });
-
+        //推荐2.0方式
         List<Integer> shopIdList = recommendService.recall(148);
         shopIdList = recommendSortService.sort(shopIdList,148);
         List<ShopModel> shopModelList = shopIdList.stream().map(id->{
@@ -143,7 +144,7 @@ public class ShopServiceImpl implements ShopService{
     @Override
     public Map<String, Object> searchES(BigDecimal longitude, BigDecimal latitude, String keyword, Integer orderby, Integer categoryId, String tags) throws IOException {
         Map<String, Object> result = new HashMap<>();
-
+        // 利用 http restclient 请求
 //        SearchRequest searchRequest = new SearchRequest("shop");
 //        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
 //        sourceBuilder.query(QueryBuilders.matchQuery("name",keyword));
@@ -156,7 +157,7 @@ public class ShopServiceImpl implements ShopService{
 //        for(SearchHit hit : hits){
 //            shopIdsList.add(new Integer(hit.getSourceAsMap().get("id").toString()));
 //        }
-
+        //使用fuction score 构造模型
         Request request = new Request("GET","/shop/_search");
 
         //构建请求
@@ -427,6 +428,9 @@ public class ShopServiceImpl implements ShopService{
 
     private Map<Integer,List<String>> categoryWorkMap = new HashMap<>();
 
+    /**
+     * 相关性重塑
+     */
     @PostConstruct
     public void init(){
         categoryWorkMap.put(1,new ArrayList<>());

@@ -25,7 +25,7 @@ public class RecommendSortService {
         //加载LR模型
         spark = SparkSession.builder().master("local").appName("DianpingApp").getOrCreate();
 
-        lrModel = LogisticRegressionModel.load("file:///Users/hzllb/Desktop/devtool/data/lrmode");
+        lrModel = LogisticRegressionModel.load("file:///Users/skyl/Desktop/devtool/data/lrmode");
 
     }
 

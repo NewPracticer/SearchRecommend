@@ -25,10 +25,10 @@ public class AlsRecallPredict {
         SparkSession spark = SparkSession.builder().master("local").appName("DianpingApp").getOrCreate();
 
         //加载模型进内存
-        ALSModel alsModel = ALSModel.load("file:///Users/hzllb/Desktop/devtool/data/alsmodel");
+        ALSModel alsModel = ALSModel.load("file:///Users/skyl/Desktop/devtool/data/alsmodel");
 
 
-        JavaRDD<String> csvFile = spark.read().textFile("file:///Users/hzllb/Desktop/devtool/data/behavior.csv").toJavaRDD();
+        JavaRDD<String> csvFile = spark.read().textFile("file:///Users/skyl/Desktop/devtool/data/behavior.csv").toJavaRDD();
 
         JavaRDD<Rating> ratingJavaRDD = csvFile.map(new Function<String, Rating>() {
             @Override

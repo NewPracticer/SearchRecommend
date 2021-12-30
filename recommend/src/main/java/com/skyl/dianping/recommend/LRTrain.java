@@ -24,7 +24,7 @@ public class LRTrain {
         SparkSession spark = SparkSession.builder().master("local").appName("DianpingApp").getOrCreate();
 
         //加载特征及label训练文件
-        JavaRDD<String> csvFile = spark.read().textFile("file:///Users/hzllb/Desktop/devtool/data/feature.csv").toJavaRDD();
+        JavaRDD<String> csvFile = spark.read().textFile("file:///Users/skyl/Desktop/devtool/data/feature.csv").toJavaRDD();
 
         //做转化
         JavaRDD<Row> rowJavaRDD = csvFile.map(new Function<String, Row>() {
@@ -56,7 +56,7 @@ public class LRTrain {
 
         LogisticRegressionModel lrModel = lr.fit(trainData);
 
-        lrModel.save("file:///Users/hzllb/Desktop/devtool/data/lrmode");
+        lrModel.save("file:///Users/skyl/Desktop/devtool/data/lrmode");
 
         //测试评估
         Dataset<Row> predictions =  lrModel.transform(testData);

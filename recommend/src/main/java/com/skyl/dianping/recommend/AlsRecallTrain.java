@@ -21,7 +21,7 @@ public class AlsRecallTrain implements Serializable {
         //初始化spark运行环境
         SparkSession spark = SparkSession.builder().master("local").appName("DianpingApp").getOrCreate();
 
-        JavaRDD<String> csvFile = spark.read().textFile("file:///Users/hzllb/Desktop/devtool/data/behavior.csv").toJavaRDD();
+        JavaRDD<String> csvFile = spark.read().textFile("file:///Users/skyl/Desktop/devtool/data/behavior.csv").toJavaRDD();
 
         JavaRDD<Rating> ratingJavaRDD = csvFile.map(new Function<String, Rating>() {
             @Override
@@ -58,7 +58,7 @@ public class AlsRecallTrain implements Serializable {
         double rmse = evaluator.evaluate(predictions);
         System.out.println("rmse = "+rmse);
 
-        alsModel.save("file:///Users/hzllb/Desktop/devtool/data/alsmodel");
+        alsModel.save("file:///Users/skyl/Desktop/devtool/data/alsmodel");
 
 
     }

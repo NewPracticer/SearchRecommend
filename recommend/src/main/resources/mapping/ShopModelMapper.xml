@@ -259,6 +259,7 @@
     from shop
   </select>
 
+  <!--推荐1.0-->
   <select id="recommend" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -267,6 +268,7 @@
     from shop order by (0.95*1/log10(distance)+ 0.05*remark_score/5)  DESC
 </select>
 
+  <!--搜索1.0-->
   <select id="search" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
